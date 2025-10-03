@@ -3,10 +3,9 @@
 ## 🚗 Concept
 
 Sampatrouille est un service révolutionnaire de conduite personnelle inspiré du succès en Chine. Un chauffeur formé et certifié vient à votre localisation, conduit **votre propre véhicule** et vous ramène à destination en toute sécurité.
-
 ## ✨ Fonctionnalités de la Landing Page
 
-### 🎯 Sections Principales
+### 🎯 Sections principales
 - **Hero Section** : Présentation du concept avec animations
 - **Explication du Concept** : 4 étapes claires avec icônes
 - **Comment ça marche** : Processus détaillé en 4 étapes
@@ -14,112 +13,87 @@ Sampatrouille est un service révolutionnaire de conduite personnelle inspiré d
 - **Vote des Villes** : Système interactif pour choisir la ville de lancement
 - **Newsletter** : Inscription pour être notifié du lancement
 
-### 🎨 Design & UX
+### Design & UX
 - **Design moderne** avec dégradés et animations fluides
 - **Responsive** : Optimisé pour mobile, tablette et desktop
 - **Animations CSS** : Effets de parallax, hover et scroll
 - **Icônes Font Awesome** : Interface visuelle claire
 - **Couleurs cohérentes** : Palette professionnelle
 
-### ⚡ Interactions JavaScript
+### Interactions JavaScript
 - **Système de vote** avec persistance locale
 - **Animations au scroll** avec Intersection Observer
 - **Header dynamique** qui se cache/affiche selon le scroll
 - **Notifications** pour les actions utilisateur
 - **Modal de confirmation** pour les votes
 - **Scroll fluide** entre les sections
-
-## 🛠️ Technologies Utilisées
-
-- **HTML5** : Structure sémantique
-- **CSS3** : Variables CSS, Grid, Flexbox, animations
-- **JavaScript ES6+** : Interactions modernes
-- **Font Awesome** : Icônes vectorielles
-- **Google Fonts** : Typographie Inter
-
-## 📱 Responsive Design
-
-Le site s'adapte parfaitement à tous les écrans :
-- **Desktop** : Layout en grille avec sidebar
-- **Tablette** : Adaptation des colonnes
-- **Mobile** : Navigation simplifiée, layout vertical
-
-## 🚀 Installation et Utilisation
-
-1. **Cloner ou télécharger** les fichiers
-2. **Ouvrir** `index.html` dans un navigateur
-3. **Ou servir** avec un serveur local :
-   ```bash
-   # Avec Python
-   python -m http.server 8000
-   
-   # Avec Node.js
-   npx serve .
-   ```
-
-## 📊 Fonctionnalités Interactives
-
-### Système de Vote
-- Vote pour les villes existantes
-- Ajout de nouvelles villes
-- Persistance des votes dans localStorage
-- Animations de feedback
-
-### Newsletter
-- Validation d'email
-- Persistance de l'inscription
-- Notifications de succès
-
-### Animations
-- Hero avec voiture flottante
-- Cartes qui apparaissent au scroll
-- Effets hover sur tous les éléments interactifs
-- Parallax léger sur le hero
-
-## 🎨 Personnalisation
-
-### Couleurs (dans `styles.css`)
-```css
-:root {
-    --primary-color: #2563eb;    /* Bleu principal */
-    --secondary-color: #f59e0b;  /* Orange/Jaune */
-    --accent-color: #10b981;     /* Vert */
-}
-```
-
-### Villes (dans `script.js`)
-```javascript
-let citiesData = {
-    paris: { name: 'Paris', votes: 2847 },
-    // Ajouter d'autres villes...
-};
-```
-
-## 📈 Métriques et Analytics
-
-Le site inclut des placeholders pour :
-- Compteurs de personnes intéressées
-- Nombre de villes candidates
-- Statistiques de sécurité
-
-## 🔧 Optimisations
-
-- **Performance** : CSS et JS optimisés
-- **SEO** : Meta tags et structure sémantique
-- **Accessibilité** : Contraste et navigation clavier
 - **Mobile-first** : Design responsive
+
+## 🔥 Intégration Firebase
+
+### Base de données Firestore
+- **Collection `votes`** : Stockage des votes par ville avec compteurs temps réel
+- **Collection `newsletter`** : Sauvegarde des emails avec timestamps
+- **Synchronisation** automatique entre tous les utilisateurs
+- **Persistance hybride** : LocalStorage + Firebase pour la robustesse
+
+## 🔒 Configuration Sécurisée
+
+### Variables d'environnement
+1. Créez un fichier `.env` à la racine du projet
+2. Copiez le contenu de `env.example` dans `.env`
+3. Remplacez les valeurs par vos vraies clés Firebase :
+
+```env
+VITE_FIREBASE_API_KEY=votre_api_key
+VITE_FIREBASE_AUTH_DOMAIN=votre_auth_domain
+VITE_FIREBASE_PROJECT_ID=votre_project_id
+VITE_FIREBASE_STORAGE_BUCKET=votre_storage_bucket
+VITE_FIREBASE_MESSAGING_SENDER_ID=votre_messaging_sender_id
+VITE_FIREBASE_APP_ID=votre_app_id
+```
+
+⚠️ **Important** : Le fichier `.env` est ignoré par Git pour la sécurité.
 
 ## 🚀 Déploiement
 
-Le site est prêt pour le déploiement sur :
+### Variables d'environnement requises
+Configurez ces variables sur votre plateforme de déploiement :
+- `VITE_FIREBASE_API_KEY`
+- `VITE_FIREBASE_AUTH_DOMAIN`
+- `VITE_FIREBASE_PROJECT_ID`
+- `VITE_FIREBASE_STORAGE_BUCKET`
+- `VITE_FIREBASE_MESSAGING_SENDER_ID`
+- `VITE_FIREBASE_APP_ID`
+
+### Plateformes supportées
 - **Netlify** (recommandé)
 - **Vercel**
-- **GitHub Pages**
-- **Serveur web classique**
+- **Firebase Hosting**
+- **GitHub Pages** (avec actions)
 
-## 📞 Support
+## 📊 Collections Firebase
 
-Pour toute question ou personnalisation, le code est entièrement commenté et modulaire.
+### Collection `votes`
+```javascript
+{
+  cityKey: {
+    name: "Nom de la ville",
+    votes: 0,
+    createdAt: timestamp,
+    isDefault: true/false
+  }
+}
+```
+
+### Collection `newsletter`
+```javascript
+{
+  email: "user@example.com",
+  subscribedAt: timestamp,
+  status: "active"
+}
+```
 
 ---
 
